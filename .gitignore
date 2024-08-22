@@ -1,3 +1,9 @@
 .jekyll-cache/
 Gemfile.lock
 _site/
+*.bak
+*.tmp
+.sass-cache
+.jekyll-metadata
+.DS_Store
+test.html

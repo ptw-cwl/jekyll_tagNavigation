@@ -1,36 +1,10 @@
-<!doctype html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="/assets/css/tag.css">
-</head>
-
-<body>
-    <header>
-        <nav></nav>
-    </header>
-    <main>
-        <div class="sidebar-left">
-            <h2>左侧边栏</h2>
-            <ul>
-                <li><a href="#">链接 1</a></li>
-                <li><a href="#">链接 2</a></li>
-                <li><a href="#">链接 3</a></li>
-            </ul>
-        </div>
-        <div class="content">
-            <h2>主要内容</h2>
-            <p>这里是主要内容区域。</p>
-        </div>
-        <div class="sidebar-right">
-            <h2>右侧边栏</h2>
-            <p>这里是右侧边栏内容。</p>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2024 网站名称. 保留所有权利。</p>
-    </footer>
-</body>
-</html>
+---
+layout: default
+---
+{% include nav.html %}
+<ptw-cwl class="row h-100">
+    {% include sidebarLeft.html %}
+    {% include main.html %}
+    {% include sidebarRight.html %}
+</ptw-cwl>
+{% include footer.html content="版权所属: ptw-cwl" %}
