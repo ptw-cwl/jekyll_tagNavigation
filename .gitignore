@@ -7,3 +7,9 @@ _site/
 .jekyll-metadata
 .DS_Store
 test.html
+_data/*.json
+_data/tag/*
+
+bookmarks.yml
+tag.yml
+category.yml

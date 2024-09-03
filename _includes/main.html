@@ -1,2 +1,66 @@
-<main class="col">
+<main class="col-10">
+    <!-- 模态框 -->
+    <div class="modal fade" id="tags">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h1 class="modal-title text-center">标签导航</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- 模态框内容 -->
+                <div class="modal-body m-3">
+                    {% for link in site.data.links %}
+                    <a href="#{{ link.tag }}" class="btn btn-outline-primary m-1">
+                        {{ link.tag }} <span class="badge bg-info">{{ link.count }}</span>
+                    </a>
+                    {% endfor %}
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">关闭</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {% for link in site.data.links %}
+
+    <div class="row">
+        <div class="col-12 m-3 p-4" id="{{ link.tag }}"></div>
+
+        <div class="col-12 m-3 p-3 border" href="#fold_{{ link.tag }}" data-bs-toggle="collapse">
+            <h3>{{ link.tag }} <span class="badge bg-info">{{ link.count }}</span></h3>
+        </div>
+    </div>
+
+    <div id="fold_{{ link.tag }}" class="row collapse show">
+        {% for card in link.links %}
+        {% if card.name and card.name != '' %}
+        <div class="col-lg-3">
+            <div class="card m-2 border">
+                <div class="card-body">
+                    {% if card.icon and card.icon != '' %}
+                    <img src="{{ card.icon }}" alt="{{ card.name }}">
+                    {% endif %}
+                    <a href="{{ card.href }}" class="text-decoration-none" target="_blank" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" title="{{ card.href }}">{{ card.name }}</a>
+                </div>
+                <div class="card-footer">
+                    {% for tag in card.tags %}
+                    <a href="#{{ tag }}" class="btn badge bg-secondary">{{ tag }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    {% endfor %}
+
 </main>

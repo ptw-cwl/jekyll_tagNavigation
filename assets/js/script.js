@@ -5,3 +5,8 @@ window.addEventListener('load', () => {
     ptwcwl.style.marginTop = `${nav.offsetHeight}px`;
     ptwcwl.style.marginBottom = `${footer.offsetHeight}px`;
 });
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
