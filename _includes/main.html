@@ -1,13 +1,13 @@
-<main class="col-10">
+<main class="container-fluid">
     {% include tags.html %}
 
     {% for link in site.data.links %}
 
     <div class="row">
-        <div class="col-12 m-3 p-4" id="{{ link.tag }}"></div>
+        <div class="col-12 p-5 user-select-none" id="{{ link.tag }}"></div>
 
-        <div class="col-12 m-3 p-3 border shadow-sm user-select-none" href="#fold_{{ link.tag }}" data-bs-toggle="collapse">
-            <h3>{{ link.tag }} <span class="badge bg-info ">{{ link.count }}</span></h3>
+        <div class="col-12 user-select-none" href="#fold_{{ link.tag }}" data-bs-toggle="collapse">
+            <h3 class="border shadow-sm p-3">{{ link.tag }} <span class="badge bg-info ">{{ link.count }}</span></h3>
         </div>
     </div>
 
@@ -15,7 +15,7 @@
         {% for card in link.links %}
         {% if card.name and card.name != '' %}
         <div class="col-lg-3">
-            <div class="card m-2 border shadow user-select-none">
+            <div class="card m-2 border shadow-sm user-select-none">
                 <div class="card-body text-truncate">
                     {% if card.icon and card.icon != '' %}
                     <img src="{{ card.icon }}" alt="{{ card.name }}">
@@ -32,10 +32,14 @@
         </div>
         {% endif %}
         {% endfor %}
+
     </div>
 
     {% endfor %}
 
-    <!-- 底部的锚点 -->
-    <div id="bottom-anchor"></div>
+    <div class="row">
+        <!-- 底部的锚点 -->
+        <div class="col-12 p-5" id="bottom-anchor"></div>
+    </div>
+
 </main>
