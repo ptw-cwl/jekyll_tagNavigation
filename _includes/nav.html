@@ -1,7 +1,19 @@
-<nav class="navbar navbar-expand-md fixed-top bg-dark navbar-dark p-3 user-select-none container-fluid">
+<nav class="navbar navbar-expand-md fixed-top bg-dark navbar-dark user-select-none p-3 container-fluid">
     <a class="navbar-brand" href="/">Ptw-cwl</a>
-
     <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#tags">
         <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="input-group m-2">
+
+        <input id="searchInput" type="text" placeholder="请输入要搜索的标签" aria-label="搜索标签" list="tagList">
+
+        <datalist id="tagList">
+            {% for link in site.data.links %}
+            <option value="{{ link.tag }}">
+                {% endfor %}
+        </datalist>
+
+        <button id="searchTag" type="button" class="btn btn-outline-secondary" onclick="searchTag()">搜索</button>
+    </div>
+
 </nav>

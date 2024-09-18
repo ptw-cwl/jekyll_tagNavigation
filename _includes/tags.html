@@ -5,12 +5,12 @@
 
             <!-- 模态框头部 -->
             <div class="modal-header">
-                <h1 class="modal-title text-center">标签导航</h1>
+                <h1>标签导航</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
             <!-- 模态框内容 -->
-            <div class="modal-body m-3">
+            <div class="modal-body">
                 {% for link in site.data.links %}
                 <a href="#{{ link.tag }}" class="btn btn-outline-primary shadow m-1">
                     {{ link.tag }} <span class="badge bg-info">{{ link.count }}</span>
