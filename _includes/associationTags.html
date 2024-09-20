@@ -1,0 +1,26 @@
+
+<div class="modal fade" id="associationTags_{{ link.tagId }}">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content user-select-none">
+
+            <div class="modal-header">
+                <h1>关联标签</h1>
+                <button typse="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                {% for associationTag in link.associationTags %}
+                <button type="button" class="btn btn-outline-primary shadow m-1" data-bs-dismiss="modal"
+                    onclick="jump('{{ associationTag }}')" >
+                    {{ associationTag }}
+                </button>
+                {% endfor %}
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">关闭</button>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,40 +1,50 @@
-<main class="container-fluid">
+<main class="container-fluid user-select-none">
     {% include tags.html %}
 
     {% for link in site.data.links %}
+    {% include associationTags.html %}
+    {% endfor %}
 
-    <div class="row">
-        <div class="col-12 p-5 user-select-none" id="{{ link.tag }}"></div>
+    {% for link in site.data.links %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 p-5" id="{{ link.tag }}"></div>
 
-        <div class="col-12 user-select-none" href="#fold_{{ link.tag }}" data-bs-toggle="collapse">
-            <h3 class="border shadow-sm p-3">{{ link.tag }} <span class="badge bg-info ">{{ link.count }}</span></h3>
-        </div>
-    </div>
+            <div class="col-12 py-5">
+                <h3 class="border shadow-sm p-3" href="#fold_{{ link.tagId }}" data-bs-toggle="collapse">
+                    {{ link.tag }} <span class="badge bg-info ">{{ link.count }}</span>
+                </h3>
+                <button type="button" class="btn btn-outline-secondary shadow-sm" data-bs-toggle="modal"
+                    data-bs-target="#associationTags_{{ link.tagId }}">
+                    关联标签 <span class="badge bg-info ">{{ link.associationTagCount }}</span>
+                </button>
 
-    <div id="fold_{{ link.tag }}" class="row collapse show">
-        {% for card in link.links %}
-        {% if card.name and card.name != '' %}
-        <div class="col-lg-3">
-            <div class="card m-2 border shadow-sm user-select-none">
-                <div class="card-body text-truncate">
-                    {% if card.icon and card.icon != '' %}
-                    <img src="{{ card.icon }}" alt="{{ card.name }}">
-                    {% endif %}
-                    <a href="{{ card.href }}" class="text-decoration-none" target="_blank" data-bs-toggle="tooltip"
-                        data-bs-placement="bottom" title="{{ card.name }} {{ card.href }}">{{ card.name }}</a>
-                </div>
-                <div class="card-footer">
-                    {% for tag in card.tags %}
-                    <a href="#{{ tag }}" class="btn badge bg-secondary">{{ tag }}</a>
-                    {% endfor %}
-                </div>
             </div>
         </div>
-        {% endif %}
-        {% endfor %}
 
+        <div id="fold_{{ link.tagId }}" class="row collapse show">
+            {% for card in link.links %}
+            {% if card.name and card.name != '' %}
+            <div class="col-lg-3">
+                <div class="card m-2 border shadow-sm user-select-none">
+                    <div class="card-body text-truncate">
+                        {% if card.icon and card.icon != '' %}
+                        <img src="{{ card.icon }}" alt="{{ card.name }}">
+                        {% endif %}
+                        <a href="{{ card.href }}" class="text-decoration-none" target="_blank" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="{{ card.name }} {{ card.href }}">{{ card.name }}</a>
+                    </div>
+                    <div class="card-footer">
+                        {% for tag in card.tags %}
+                        <a href="#{{ tag }}" class="btn badge bg-secondary">{{ tag }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
     </div>
-
     {% endfor %}
 
     <div class="row">
