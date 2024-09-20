@@ -13,11 +13,7 @@ function searchTag() {
 // 跳转路径
 function jump(value) {
   if (value) {
-    console.log(window.location);
-    console.log(window.scroll);
     window.location.hash = value.trim();
-    console.log(window.location);
-    console.log(window.scroll);
   }
 }
 

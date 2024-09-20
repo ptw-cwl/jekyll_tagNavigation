@@ -2,23 +2,23 @@
     {% include tags.html %}
 
     {% for link in site.data.links %}
-    {% include associationTags.html %}
-    {% endfor %}
-
-    {% for link in site.data.links %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 p-5" id="{{ link.tag }}"></div>
+            <div class="col-12 py-5"  id="{{ link.tag }}"></div>
 
-            <div class="col-12 py-5">
+            <div class="col-12 py-3">
                 <h3 class="border shadow-sm p-3" href="#fold_{{ link.tagId }}" data-bs-toggle="collapse">
                     {{ link.tag }} <span class="badge bg-info ">{{ link.count }}</span>
                 </h3>
-                <button type="button" class="btn btn-outline-secondary shadow-sm" data-bs-toggle="modal"
-                    data-bs-target="#associationTags_{{ link.tagId }}">
+                <button type="button" class="btn btn-outline-secondary shadow-sm" href="#associationTags_{{ link.tagId }}"
+                    data-bs-toggle="collapse">
                     关联标签 <span class="badge bg-info ">{{ link.associationTagCount }}</span>
                 </button>
-
+                <div id="associationTags_{{ link.tagId }}" class="collapse shadow-sm p-2">
+                    {% for associationTag in link.associationTags %}
+                    <a href="#{{ associationTag }}" class="btn badge bg-secondary">{{ associationTag }}</a>
+                    {% endfor %}
+                </div>
             </div>
         </div>
 
