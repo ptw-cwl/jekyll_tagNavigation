@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <div class="input-group">
                     <h1 class="me-5">标签导航</h1>
-                    <input id="searchInput" type="text" placeholder="请输入要搜索的标签" aria-label="搜索标签" list="tagList">
+                    <input id="searchInput" type="search" autocomplete="false" placeholder="请输入要搜索的标签" aria-label="搜索标签" list="tagList">
                     <datalist id="tagList">
                         {% for link in site.data.links %}
                         <option value="{{ link.tag }}">

@@ -4,19 +4,23 @@
     {% for link in site.data.links %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 py-5"  id="{{ link.tag }}"></div>
+            <div class="col-12 py-5" id="{{ link.tag }}"></div>
 
             <div class="col-12 py-3">
                 <h3 class="border shadow-sm p-3" href="#fold_{{ link.tagId }}" data-bs-toggle="collapse">
                     {{ link.tag }} <span class="badge bg-info ">{{ link.count }}</span>
                 </h3>
-                <button type="button" class="btn btn-outline-secondary shadow-sm" href="#associationTags_{{ link.tagId }}"
-                    data-bs-toggle="collapse">
-                    关联标签 <span class="badge bg-info ">{{ link.associationTagCount }}</span>
+                <button type="button" class="btn btn-outline-secondary shadow-sm position-relative"
+                    href="#associationTags_{{ link.tagId }}" data-bs-toggle="collapse">
+                    关联标签 
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                        {{ link.associationTagCount }}
+                        <span class="visually-hidden">未读消息</span>
+                      </span>
                 </button>
                 <div id="associationTags_{{ link.tagId }}" class="collapse shadow-sm p-2">
                     {% for associationTag in link.associationTags %}
-                    <a href="#{{ associationTag }}" class="btn badge bg-secondary">{{ associationTag }}</a>
+                    <a href="#{{ associationTag }}" class="btn badge bg-info">{{ associationTag }}</a>
                     {% endfor %}
                 </div>
             </div>
@@ -33,10 +37,21 @@
                         {% endif %}
                         <a href="{{ card.href }}" class="text-decoration-none" target="_blank" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" title="{{ card.name }} {{ card.href }}">{{ card.name }}</a>
+                        {% if card.status%}
+                        <ol class="breadcrumb">
+                            {% if card.status == '-1' %}
+                            <li class="breadcrumb-item text-danger">已失效</li>
+                            {% endif %}
+
+                            {% if card.status == '0' %}
+                            <li class="breadcrumb-item text-muted">未整理</li>
+                            {% endif %}
+                        </ol>
+                        {% endif %}
                     </div>
                     <div class="card-footer">
                         {% for tag in card.tags %}
-                        <a href="#{{ tag }}" class="btn badge bg-secondary">{{ tag }}</a>
+                        <a href="#{{ tag }}" class="btn badge bg-info">{{ tag }}</a>
                         {% endfor %}
                     </div>
                 </div>
